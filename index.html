@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+
+	    <title> Caclulator </title>
+
+            <style> 
+                
+
+            </style>
+
+	</head>
+
+	<body>
+
+
+		<div class="main">
+			<p>1. Preoperative tumor (T) stage </p>
+
+			<form name="first">
+				<input class="textview" name="one">
+			</form>
+			<table>
+				<tr>	
+					
+					<td><input type="button" value="T2, not otherwise specified (NOS)" onclick="insert1('T2, not otherwise specified (NOS)')"></td>
+					<td><input type="button" value="T2a" onclick="insert1('T2a')"></td>
+					<td><input type="button" value="T2b" onclick="insert1('T2b')"></td>
+					<td><input type="button" value="T3" onclick="insert1('T3')"></td>
+					<td><input type="button" value="T4"onclick="insert1('T4')"></td>
+					</td>
+			</table>
+			<p>2. Location of tumor in bladder </p>
+			<table>
+				<tr>
+					<td><input type="button" value="Not specified" onclick="insert2('Not specified')"></td>
+					<td><input type="button" value="Trigone/ureter/bladder neck" onclick="insert2('Trigone/ureter/bladder neck')"></td>
+				<td><input type="button" value="Lateral wall or dome" onclick="insert2('Lateral wall or dome')"></td>
+					<td><input type="button" value="Overlapping/multiple sites" onclick="insert2('overlapping/multiple sites')"></td>
+				</td>
+			</table>
+			<form name="second">
+				<input class="textview" name="two">
+			</form>
+			<p>3. Lymphovascular invasion (LVSI) </p>
+			<table>
+				<tr>
+					<td><input type="button" value="Not specified" onclick="insert3('Not specified')"></td>
+					<td><input type="button" value="No" onclick="insert3('No')"></td>
+					<td><input type="button" value="Yes" onclick="insert3('Yes')"></td>
+				</td>
+			</table>
+			<form name="third">
+				<input class="textview" name="three">
+			</form>
+			<p>4. Tumor Size </p>
+			<table>
+				<tr>
+					<td><input type="button" value="Not specified" onclick="insert4('Not specified')"></td>
+					<td><input type="button" value="<= 2 cm" onclick="insert4('<= 2 cm')"></td>
+					<td><input type="button" value="> 2 cm and <= 4 cm" onclick="insert4('> 2 cm and <= 4 cm')"></td>
+					<td><input type="button" value="> 4 cm and <= 6 cm" onclick="insert4('> 4 cm and <= 6 cm')"></td>
+					<td><input type="button" value="> 6 cm" onclick="insert4('> 6 cm')"></td>
+				</td>
+			</table>
+			<form name="fourth">
+				<input class="textview" name="four">
+			</form>
+			<p>5. Patient age (years)</p>
+			<form name="fifth">
+				<input class="textview" name="five">
+			</form>
+			<!-- input textbox -->
+			<p>6. Sex </p>
+			<table>
+				<tr>
+					<td><input type="button" value="Male" onclick="insert5('Male')"></td>
+					<td><input type="button" value="Female" onclick="insert5('Female')"></td>
+				</td>
+			</table>
+			<form name="sixth">
+				<input class="textview" name="six">
+			</form>
+
+			<p> Result for the Calculation.</p>
+                        <form name="Result">
+				<input class="textview" name="result">
+			</form>
+			<table>
+				<tr>
+					<td><input type="button" value="Calculate:" onclick="computeResult()"></td>
+				</td>
+			</table>
+		</div>
+	</body>
+
+        <script type="text/javascript">
+	
+		function computeResult(){
+			var sum = -1.101;
+
+
+			switch(document.first.one.value){
+
+
+				case 'T2, not otherwise specified (NOS)':
+					break;
+
+				case 'T2a':
+					sum = sum - 0.352;
+
+					break;
+
+				case 'T2b':
+					sum = sum + 0.330;
+
+					break;
+
+				case 'T3':
+					sum = sum - 0.094;
+
+					break;
+
+				case 'T4':
+					sum = sum - 0.082;
+
+					break;
+
+				default:
+					document.Result.result.value = 'Question not answered';
+					return;
+
+					break;
+
+			}
+
+			switch(document.second.two.value){
+
+				case 'Not specified':
+
+					break;
+				case 'Trigone/ureter/bladder neck':
+					sum  = sum + 0.183;
+					break;
+
+				case 'Lateral wall or dome':
+					sum = sum - 0.113;
+					break;
+
+				case 'Overlapping/multiple sites':
+					sum = sum + 0.185;
+					break;
+
+				default:
+					document.Result.result.value = 'Question not answered';
+					return;
+
+					break;
+			}
+
+			switch(document.third.three.value){
+				case 'Not specified':
+
+					break;
+
+				case 'No':
+					sum = sum - 0.788;
+
+					break;
+
+				case 'Yes':
+					sum = sum + 1.083;
+
+					break;
+
+				default:
+					document.Result.result.value = 'Question not answered';
+					return;
+					break;
+			}
+
+			switch(document.fourth.four.value){
+				case 'Not specified':
+
+					break;
+
+				case '<= 2 cm':
+					sum = sum- 0.198;
+
+					break;
+
+				case '> 2 cm and <= 4 cm':
+					sum = sum + 0.223;
+
+					break;
+
+				case '> 4 cm and <= 6 cm':
+					sum = sum + 0.362;
+
+					break;
+
+				case '> 6 cm':
+					sum = sum + 0.564;
+
+					break;
+
+				default:
+					document.Result.result.value = 'Question not answered';
+					return;
+					break;
+			}
+			
+			sum = sum - (0.008 * document.fifth.five.value);
+			
+			switch(document.sixth.six.value){
+
+				case 'Male':
+					break;
+
+				case 'Female':
+					sum = sum + 0.142;
+					break;
+
+				default:
+					document.Result.result.value = 'Questions not answered';
+					return;
+					break;
+			}
+			sum = sum + (13*0.014);
+
+			sum = Math.pow(Math.E, sum);
+
+			document.Result.result.value = sum;
+		}
+
+		
+	
+	</script>
+
+	<script>
+		function insert1(num){
+			document.first.one.value = null;
+			document.first.one.value = num;
+		}
+	</script>
+	<script>
+		function insert2(num){
+			document.second.two.value = null;
+			document.second.two.value = num;
+		}
+	</script>
+	<script>
+		function insert3(num){
+			document.third.three.value = null;
+			document.third.three.value = num;
+		}
+	</script>
+	<script>
+		function insert4(num){
+			document.fourth.four.value = null;
+			document.fourth.four.value = num;
+		}
+	</script>
+	<script>
+		function insert5(num){
+			document.sixth.six.value = null;
+			document.sixth.six.value = num;
+		}
+	</script>
+</html>
