@@ -3,11 +3,9 @@
 	<head>
 	    <meta charset="utf-8">
 
-	    <title> Caclulator </title>
+	    <title> Calculator </title>
 
             <style> 
-                
-
             </style>
 
 	</head>
@@ -18,90 +16,96 @@
 		<div class="main">
 			<p>1. Preoperative tumor (T) stage </p>
 
-			<form name="first">
-				<input class="textview" name="one">
+                        <form name="first">
+				<input type="radio" name="one" value="T2, not otherwise specified (NOS)"> T2, not otherwise specified (NOS)
+
+				<input type="radio" name="one" value="T2a">T2a
+				
+				<input type="radio" name="one" value="T2b">T2b
+
+				<input type="radio" name="one" value="T3">T3
+
+
+				<input type="radio" name="one" value="T4"> T4
 			</form>
-			<table>
-				<tr>	
-					
-					<td><input type="button" value="T2, not otherwise specified (NOS)" onclick="insert1('T2, not otherwise specified (NOS)')"></td>
-					<td><input type="button" value="T2a" onclick="insert1('T2a')"></td>
-					<td><input type="button" value="T2b" onclick="insert1('T2b')"></td>
-					<td><input type="button" value="T3" onclick="insert1('T3')"></td>
-					<td><input type="button" value="T4"onclick="insert1('T4')"></td>
-					</td>
-			</table>
 			<p>2. Location of tumor in bladder </p>
-			<table>
-				<tr>
-					<td><input type="button" value="Not specified" onclick="insert2('Not specified')"></td>
-					<td><input type="button" value="Trigone/ureter/bladder neck" onclick="insert2('Trigone/ureter/bladder neck')"></td>
-				<td><input type="button" value="Lateral wall or dome" onclick="insert2('Lateral wall or dome')"></td>
-					<td><input type="button" value="Overlapping/multiple sites" onclick="insert2('overlapping/multiple sites')"></td>
-				</td>
-			</table>
+
 			<form name="second">
-				<input class="textview" name="two">
-			</form>
-			<p>3. Lymphovascular invasion (LVSI) </p>
-			<table>
-				<tr>
-					<td><input type="button" value="Not specified" onclick="insert3('Not specified')"></td>
-					<td><input type="button" value="No" onclick="insert3('No')"></td>
-					<td><input type="button" value="Yes" onclick="insert3('Yes')"></td>
-				</td>
-			</table>
-			<form name="third">
-				<input class="textview" name="three">
-			</form>
-			<p>4. Tumor Size </p>
-			<table>
-				<tr>
-					<td><input type="button" value="Not specified" onclick="insert4('Not specified')"></td>
-					<td><input type="button" value="<= 2 cm" onclick="insert4('<= 2 cm')"></td>
-					<td><input type="button" value="> 2 cm and <= 4 cm" onclick="insert4('> 2 cm and <= 4 cm')"></td>
-					<td><input type="button" value="> 4 cm and <= 6 cm" onclick="insert4('> 4 cm and <= 6 cm')"></td>
-					<td><input type="button" value="> 6 cm" onclick="insert4('> 6 cm')"></td>
-				</td>
-			</table>
-			<form name="fourth">
-				<input class="textview" name="four">
-			</form>
-			<p>5. Patient age (years)</p>
-			<form name="fifth">
-				<input class="textview" name="five">
-			</form>
-			<!-- input textbox -->
-			<p>6. Sex </p>
-			<table>
-				<tr>
-					<td><input type="button" value="Male" onclick="insert5('Male')"></td>
-					<td><input type="button" value="Female" onclick="insert5('Female')"></td>
-				</td>
-			</table>
-			<form name="sixth">
-				<input class="textview" name="six">
+				<input type="radio" name="two" value="Not specified"> Not specified
+
+				<input type="radio" name="two" value="Trigone/ureter/bladder neck">Trigone/ureter/bladder neck
+				
+				<input type="radio" name="two" value="Lateral wall or dome">Lateral wall or dome
+
+				<input type="radio" name="two" value="Overlapping/multiple sites">Overlapping/multiple sites
+
 			</form>
 
-			<p> Result for the Calculation.</p>
+			<p>3. Lymphovascular invasion (LVSI) </p>
+
+			<form name="third">
+				<input type="radio" name="three" value="Not specified"> Not specified
+
+				<input type="radio" name="three" value="No">No
+				
+				<input type="radio" name="three" value="Yes">Yes
+
+			</form>
+			<p>4. Tumor Size </p>
+			
+
+			<form name="fourth">
+				<input type="radio" name="four" value="Not specified"> Not specified
+
+				<input type="radio" name="four" value="<= 2 cm"> <= 2 cm
+
+				<input type="radio" name="four" value="> 2 cm and <= 4 cm"> > 2 cm and <= 4 cm
+					
+				<input type="radio" name="four" value="> 4 cm and <= 6 cm"> > 4 cm and <= 6 cm
+
+				<input type="radio" name="four" value="> 6 cm"> > 6 cm
+
+			</form>
+			<p>5. Patient age (years)</p>
+                         <form name="fifth">
+				 <input class="textview" name="five">
+			</form>
+			<p>6. Sex </p>
+
+
+			<form name="sixth">
+				<input type="radio" name="six" value="Male"> Male
+
+				<input type="radio" name="six" value="Female"> Female
+
+
+			</form>
+
                         <form name="Result">
 				<input class="textview" name="result">
 			</form>
-			<table>
-				<tr>
-					<td><input type="button" value="Calculate:" onclick="computeResult()"></td>
-				</td>
-			</table>
+			<input type="button" value="Calculate:" onclick="computeResult()">
 		</div>
 	</body>
 
         <script type="text/javascript">
 	
 		function computeResult(){
+			
 			var sum = -1.101;
-
-
-			switch(document.first.one.value){
+			var radios1 = document.getElementsByName("one");
+			var i = 0, len = radios1.length;
+			var checked = false;
+			var userAnswer1;
+			  
+			for( ; i < len; i++ ) {
+				if(radios1[i].checked) {
+			            checked = true;
+			            userAnswer1 = radios1[i].value;
+			        }
+			} 
+			
+			switch(userAnswer1){
 
 
 				case 'T2, not otherwise specified (NOS)':
@@ -135,7 +139,20 @@
 
 			}
 
-			switch(document.second.two.value){
+			var radios2 = document.getElementsByName("two");
+		  	i = 0 ;
+			len = radios2.length;
+		  	checked = false;
+		  	var userAnswer2;
+		  
+		  	for( ; i < len; i++ ) {
+		        	if(radios2[i].checked) {
+		        		checked = true;
+		       			userAnswer2 = radios2[i].value;
+		     		}
+			  }	 
+
+			switch(userAnswer2){
 
 				case 'Not specified':
 
@@ -159,7 +176,20 @@
 					break;
 			}
 
-			switch(document.third.three.value){
+			var radios3 = document.getElementsByName("three");
+		  	i = 0; 
+			len = radios3.length;
+		  	checked = false;
+		  	var userAnswer3;
+		  
+		  	for( ; i < len; i++ ) {
+		        	if(radios3[i].checked) {
+		        		checked = true;
+		       			userAnswer3 = radios3[i].value;
+		     		}
+			  }	
+
+			switch(userAnswer3){
 				case 'Not specified':
 
 					break;
@@ -180,7 +210,25 @@
 					break;
 			}
 
-			switch(document.fourth.four.value){
+
+			var radios4 = document.getElementsByName("four");
+		  	i = 0 ;
+			len = radios4.length;
+		  	checked = false;
+		  	var userAnswer4;
+		  
+		  	for( ; i < len; i++ ) {
+		        	if(radios4[i].checked) {
+		        		checked = true;
+		       			userAnswer4 = radios4[i].value;
+		     		}
+			  }	
+
+
+
+
+
+			switch(userAnswer4){
 				case 'Not specified':
 
 					break;
@@ -212,8 +260,27 @@
 			}
 			
 			sum = sum - (0.008 * document.fifth.five.value);
-			
-			switch(document.sixth.six.value){
+		        if(document.fifth.five.value.length == 0){
+			    document.Result.result.value = 'Question not answered';
+			    return;
+
+   	       	        }
+
+
+			var radios6 = document.getElementsByName("six");
+		  	i = 0 ;
+			len = radios6.length;
+		  	checked = false;
+		  	var userAnswer6;
+		  
+		  	for( ; i < len; i++ ) {
+		        	if(radios6[i].checked) {
+		        		checked = true;
+		       			userAnswer6 = radios6[i].value;
+		     		}
+			  }	
+
+			switch(userAnswer6){
 
 				case 'Male':
 					break;
@@ -230,42 +297,28 @@
 			sum = sum + (13*0.014);
 
 			sum = Math.pow(Math.E, sum);
+		         
 
-			document.Result.result.value = sum;
+			document.Result.result.value = Math.round(100*(sum/(1 + sum))) + " % ";
+
+
 		}
+	</script>
 
-		
 	
-	</script>
-
 	<script>
-		function insert1(num){
-			document.first.one.value = null;
-			document.first.one.value = num;
-		}
-	</script>
-	<script>
-		function insert2(num){
-			document.second.two.value = null;
-			document.second.two.value = num;
-		}
-	</script>
-	<script>
-		function insert3(num){
-			document.third.three.value = null;
-			document.third.three.value = num;
-		}
-	</script>
-	<script>
-		function insert4(num){
-			document.fourth.four.value = null;
-			document.fourth.four.value = num;
-		}
-	</script>
-	<script>
-		function insert5(num){
-			document.sixth.six.value = null;
-			document.sixth.six.value = num;
-		}
+		function submitAnswer() {
+		  var radios = document.getElementsByName("choice");
+		  var i = 0, len = radios.length;
+		  var checked = false;
+		  var userAnswer;
+		  
+		  for( ; i < len; i++ ) {
+		     if(radios[i].checked) {
+		       checked = true;
+		       userAnswer = radios[i].value;
+		     }
+		  } 
+	
 	</script>
 </html>
