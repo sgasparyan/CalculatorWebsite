@@ -12,75 +12,92 @@
 
 	<body>
 
-
+		
+		<h1>
+		<img src="image.png">
+		</h1>
 		<div class="main">
 			<p>1. Preoperative tumor (T) stage </p>
+			<form>
+			<select id="stage">
+				<option value="T2, not otherwise specified (NOS)"> T2, not otherwise specified (NOS)</option>
 
-                        <form name="first">
-				<input type="radio" name="one" value="T2, not otherwise specified (NOS)"> T2, not otherwise specified (NOS)
+				<option value="T2a"> T2a</option>
 
-				<input type="radio" name="one" value="T2a">T2a
-				
-				<input type="radio" name="one" value="T2b">T2b
+				<option value="T2b"> T2b</option>
 
-				<input type="radio" name="one" value="T3">T3
+				<option value="T3"> T3</option>
 
-
-				<input type="radio" name="one" value="T4"> T4
+				<option value="T4"> T4</option>
+			</select>
 			</form>
+			<br>
+
 			<p>2. Location of tumor in bladder </p>
 
-			<form name="second">
-				<input type="radio" name="two" value="Not specified"> Not specified
+			<form>
+			<select id="location">
+				<option value="Not specified"> Not specified </option>
 
-				<input type="radio" name="two" value="Trigone/ureter/bladder neck">Trigone/ureter/bladder neck
-				
-				<input type="radio" name="two" value="Lateral wall or dome">Lateral wall or dome
+				<option value="Trigone/ureter/bladder neck"> Trigone/ureter/bladder neck</option>
 
-				<input type="radio" name="two" value="Overlapping/multiple sites">Overlapping/multiple sites
+				<option value="Lateral wall or dome"> Lateral wall or dome</option>
 
+				<option value="Overlapping/multiple sites"> Overlapping/multiple sites</option>
+
+			</select>
 			</form>
-
+			<br>
 			<p>3. Lymphovascular invasion (LVSI) </p>
+			<form>
+			<select id="invasion">
+				<option value="Not specified"> Not specified</option>
 
-			<form name="third">
-				<input type="radio" name="three" value="Not specified"> Not specified
+				<option value="No"> No</option>
 
-				<input type="radio" name="three" value="No">No
-				
-				<input type="radio" name="three" value="Yes">Yes
+				<option value="Yes"> Yes</option>
 
+
+			</select>
 			</form>
+			<br>
+
+
 			<p>4. Tumor Size </p>
-			
+			<form>
+			<select id="size">
+				<option value="Not specified"> Not specified</option>
 
-			<form name="fourth">
-				<input type="radio" name="four" value="Not specified"> Not specified
+				<option value="<= 2 cm"> <= 2 cm </option>
 
-				<input type="radio" name="four" value="<= 2 cm"> <= 2 cm
+				<option value="> 2 cm and <= 4 cm"> > 2 cm and <= 4 cm</option>
 
-				<input type="radio" name="four" value="> 2 cm and <= 4 cm"> > 2 cm and <= 4 cm
-					
-				<input type="radio" name="four" value="> 4 cm and <= 6 cm"> > 4 cm and <= 6 cm
+				<option value="> 4 cm and <= 6 cm"> > 4 cm and <= 6 cm</option>
 
-				<input type="radio" name="four" value="> 6 cm"> > 6 cm
-
+				<option value="> 6 cm"> > 6 cm </option>
+			</select>
 			</form>
+			<br>
+			
 			<p>5. Patient age (years)</p>
                          <form name="fifth">
 				 <input class="textview" name="five">
 			</form>
-			<p>6. Sex </p>
 
 
-			<form name="sixth">
-				<input type="radio" name="six" value="Male"> Male
+			<br>
 
-				<input type="radio" name="six" value="Female"> Female
+			<p>6. Sex
+			<br>
+			<form>
+			<select id="sex">
+				<option value="Male"> Male</option>
 
+				<option value="Female"> Female</option>
 
+			</select>
+			<p> Predicted risk of pN+ disease: </p>
 			</form>
-
                         <form name="Result">
 				<input class="textview" name="result">
 			</form>
@@ -91,21 +108,8 @@
         <script type="text/javascript">
 	
 		function computeResult(){
-			
 			var sum = -1.101;
-			var radios1 = document.getElementsByName("one");
-			var i = 0, len = radios1.length;
-			var checked = false;
-			var userAnswer1;
-			  
-			for( ; i < len; i++ ) {
-				if(radios1[i].checked) {
-			            checked = true;
-			            userAnswer1 = radios1[i].value;
-			        }
-			} 
-			
-			switch(userAnswer1){
+			switch(document.getElementById("stage").value){
 
 
 				case 'T2, not otherwise specified (NOS)':
@@ -132,27 +136,12 @@
 					break;
 
 				default:
-					document.Result.result.value = 'Question not answered';
-					return;
 
 					break;
 
 			}
 
-			var radios2 = document.getElementsByName("two");
-		  	i = 0 ;
-			len = radios2.length;
-		  	checked = false;
-		  	var userAnswer2;
-		  
-		  	for( ; i < len; i++ ) {
-		        	if(radios2[i].checked) {
-		        		checked = true;
-		       			userAnswer2 = radios2[i].value;
-		     		}
-			  }	 
-
-			switch(userAnswer2){
+			switch(document.getElementById("location").value){
 
 				case 'Not specified':
 
@@ -170,26 +159,11 @@
 					break;
 
 				default:
-					document.Result.result.value = 'Question not answered';
-					return;
 
 					break;
 			}
 
-			var radios3 = document.getElementsByName("three");
-		  	i = 0; 
-			len = radios3.length;
-		  	checked = false;
-		  	var userAnswer3;
-		  
-		  	for( ; i < len; i++ ) {
-		        	if(radios3[i].checked) {
-		        		checked = true;
-		       			userAnswer3 = radios3[i].value;
-		     		}
-			  }	
-
-			switch(userAnswer3){
+			switch(document.getElementById("invasion").value){
 				case 'Not specified':
 
 					break;
@@ -205,30 +179,10 @@
 					break;
 
 				default:
-					document.Result.result.value = 'Question not answered';
-					return;
 					break;
 			}
 
-
-			var radios4 = document.getElementsByName("four");
-		  	i = 0 ;
-			len = radios4.length;
-		  	checked = false;
-		  	var userAnswer4;
-		  
-		  	for( ; i < len; i++ ) {
-		        	if(radios4[i].checked) {
-		        		checked = true;
-		       			userAnswer4 = radios4[i].value;
-		     		}
-			  }	
-
-
-
-
-
-			switch(userAnswer4){
+			switch(document.getElementById("size").value){
 				case 'Not specified':
 
 					break;
@@ -254,33 +208,17 @@
 					break;
 
 				default:
-					document.Result.result.value = 'Question not answered';
-					return;
 					break;
 			}
 			
 			sum = sum - (0.008 * document.fifth.five.value);
 		        if(document.fifth.five.value.length == 0){
-			    document.Result.result.value = 'Question not answered';
+			    document.Result.result.value = 'Enter your age';
 			    return;
 
    	       	        }
 
-
-			var radios6 = document.getElementsByName("six");
-		  	i = 0 ;
-			len = radios6.length;
-		  	checked = false;
-		  	var userAnswer6;
-		  
-		  	for( ; i < len; i++ ) {
-		        	if(radios6[i].checked) {
-		        		checked = true;
-		       			userAnswer6 = radios6[i].value;
-		     		}
-			  }	
-
-			switch(userAnswer6){
+			switch(document.getElementById("sex").value){
 
 				case 'Male':
 					break;
@@ -290,35 +228,11 @@
 					break;
 
 				default:
-					document.Result.result.value = 'Questions not answered';
-					return;
 					break;
 			}
 			sum = sum + (13*0.014);
-
 			sum = Math.pow(Math.E, sum);
-		         
-
 			document.Result.result.value = Math.round(100*(sum/(1 + sum))) + " % ";
-
-
 		}
-	</script>
-
-	
-	<script>
-		function submitAnswer() {
-		  var radios = document.getElementsByName("choice");
-		  var i = 0, len = radios.length;
-		  var checked = false;
-		  var userAnswer;
-		  
-		  for( ; i < len; i++ ) {
-		     if(radios[i].checked) {
-		       checked = true;
-		       userAnswer = radios[i].value;
-		     }
-		  } 
-	
 	</script>
 </html>
