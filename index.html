@@ -3,14 +3,9 @@
 	<head>
 	    <meta charset="utf-8">
 
-	    <title> Calculator </title>
-
-            
-
+	    <title> Stanford Bladder Calculator </title>
 
 	    <style>
-            
-		/* class applies to select element itself, not a wrapper element */
 		.select-css {
 			display: block;
 			font-size: 16px;
@@ -20,7 +15,7 @@
 			line-height: 1.3;
 			padding: .6em 1.4em .5em .8em;
 			width: 100%;
-			max-width: 50%; /* useful when width is set to anything other than 100% */
+			max-width: 100%;
 			box-sizing: border-box;
 			margin: 0;
 			border: 1px solid #aaa;
@@ -30,66 +25,45 @@
 			-webkit-appearance: none;
 			appearance: none;
 			background-color: #fff;
-			/* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
-				for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
-				
-			*/
 			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
 			  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
 			background-repeat: no-repeat, repeat;
-			/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
 			background-position: right .7em top 50%, 0 0;
-			/* icon size, then gradient */
 			background-size: .65em auto, 100%;
 		}
-		/* Hide arrow icon in IE browsers */
 		.select-css::-ms-expand {
 			display: none;
 		}
-		/* Hover style */
 		.select-css:hover {
 			border-color: #888;
 		}
-		/* Focus style */
 		.select-css:focus {
 			border-color: #aaa;
-			/* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
 			box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
 			box-shadow: 0 0 0 3px -moz-mac-focusring;
 			color: #222; 
 			outline: none;
 		}
-
-		/* Set options to normal weight */
 		.select-css option {
 			font-weight:normal;
 		}
-
-		/* Support for rtl text, explicit support for Arabic and Hebrew */
 		*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
 			background-position: left .7em top 50%, 0 0;
 			padding: .6em .8em .5em 1.4em;
 		}
-
-		/* Disabled styles */
 		.select-css:disabled, .select-css[aria-disabled=true] {
 			color: graytext;
 			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
 			  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
 		}
-
 		.select-css:disabled:hover, .select-css[aria-disabled=true] {
 			border-color: #aaa;
 
 		}
-
-		/* Support for rtl text, explicit support for Arabic and Hebrew */
 		*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
 			background-position: left .7em top 50%, 0 0;
 			padding: .6em .8em .5em 1.4em;
 		}
-
-		/* Disabled styles */
 		.select-css:disabled, .select-css[aria-disabled=true] {
 			color: graytext;
 			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
@@ -106,7 +80,7 @@
 			color: #444;
 			line-height: 1.3;
 			padding: .6em 1.4em .5em .8em;
-			width: 50%;
+			width: 100%;
 			max-width: 100%; /* useful when width is set to anything other than 100% */
 			box-sizing: border-box;
 			margin: 0;
@@ -119,8 +93,8 @@
 			background-color: #fff;
 		}
 		canvas {
-		    width: 100% !important;
-		    height: auto !important;
+		    width: 100%;
+		    height: 100%;
 		}
 
 		.table {
@@ -128,38 +102,29 @@
 		    width: 100%;
 		    table-layout: fixed;
 		}
-
 		.cell {
 		    display: table-cell;
 		    vertical-align: middle;
 		}
-		pre {
-		    
-		    font-size: 30px;
-	            font-weight: 1000;
-		    background-color: #fff;
-		    display: block;
-		    max-width: 50%;
-		    font-family: sans-serif;
-		    color: #009900
-		    white-space: pre;
-		    margin: 25px;
-		}
-		    </style>
+	</style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	</head>
 
 	<body>
-		
+
 		<img src="image.png">
+		<div class="container">	
+
 
 			<div class="table">
 
 			<div class="cell">
-				<pre>  1. Preoperative tumor (T) stage </pre>
+
+				<p>1. Preoperative tumor (T) stage</p>
+
 				<form>
 				<select class="select-css" id="stage">
 					<option value="T2, not otherwise specified (NOS)"> T2, not otherwise specified (NOS)</option>
@@ -177,7 +142,7 @@
 				<br>
 
 
-				<pre>  2. Location of tumor in bladder </pre>
+				<p>  2. Location of tumor in bladder </p>
 
 				<form>
 				<select class="select-css" id="location">
@@ -192,7 +157,7 @@
 				</select>
 				</form>
 				<br>
-				<pre>  3. Lymphovascular invasion (LVSI) </pre>
+				<p>  3. Lymphovascular invasion (LVSI) </p>
 				<form>
 				<select class="select-css" id="invasion">
 					<option value="Not specified"> Not specified</option>
@@ -207,7 +172,7 @@
 				<br>
 
 
-				<pre>  4. Tumor Size </pre>
+				<p>  4. Tumor Size </p>
 				<form>
 				<select class="select-css" id="size">
 					<option value="Not specified"> Not specified</option>
@@ -223,14 +188,14 @@
 				</form>
 				<br>
 				
-				<pre>  5. Patient age (years)</pre>
+				<p>  5. Patient age (years)</p>
 				 <form name="fifth">
 					 <input class="textview" name="five">
 				</form>
 
 				<br>
 
-				<pre>6. Sex </pre>
+				<p>6. Sex </p>
 				<br>
 				<form>
 				<select class="select-css" id="sex">
@@ -241,10 +206,10 @@
 				</select>
 				<br>
 				</form>
+				<button type="button" class="btn btn-danger" onclick="computeResult()">Predicted risk of pN+ desease</button>
 
-				<input type="button" value="Calculate:" onclick="computeResult()">
-				<pre>  Predicted risk of pN+ disease: </pre>
 				<form name="Result">
+					<br>
 					<input class="textview" name="result">
 				</form>
 			</div>
@@ -252,6 +217,7 @@
 			    <canvas id="myChart"></canvas>
 			</div>
 			</div>
+		</div>
 
 		</body>
         <script type="text/javascript">
@@ -386,49 +352,44 @@
 
 			    let myChart = document.getElementById('myChart').getContext('2d');
 
-			    // Global Options
 			    Chart.defaults.global.defaultFontFamily = 'Lato';
 			    Chart.defaults.global.defaultFontSize = 18;
 			    Chart.defaults.global.defaultFontColor = '#777';
 
 			    let massPopChart = new Chart(myChart, {
-			      type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+			      type:'pie',
 			      data:{
-				labels:['risk', 'safe'],
+				labels:['predicted probability of involved nodes', 'predicted probability of negative nodes'],
 				datasets:[{
 				  label:'Population',
 				  data:[
 				      sol,
 				      100 - sol,
 				  ],
-				  //backgroundColor:'green',
 				  backgroundColor:[
 				    'rgba(255, 99, 132, 0.6)',
 				    'rgba(54, 162, 235, 0.6)',
 				  ],
-				  borderWidth:1,
-				  borderColor:'#777',
-				  hoverBorderWidth:3,
-				  hoverBorderColor:'#000'
 				}]
 			      },
 			      options:{
 				title:{
+				  fontColor: '#000',
 				  display:true,
 				  text:'Predicted risk of pN+ disease',
 				  fontSize:25
 				},
 				legend:{
 				  display:true,
-				  position:'left',
+				  position:'bottom',
 				  labels:{
 				    fontColor:'#000'
 				  }
 				},
 				layout:{
 				  padding:{
-				    left:0,
-				    right:200,
+				    left:20,
+				    right:0,
 				    bottom:0,
 				    top:0
 				  }
