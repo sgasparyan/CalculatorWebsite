@@ -1,7 +1,5 @@
 <!doctype html>
 <html>
-
-
 	<!-- The header will handle all the styling.-->
 	<head>
 	    <meta charset="utf-8">
@@ -244,7 +242,6 @@
 			formatter: (value) => {
 				return value + '%';
 			}
-
 		    }
 		},
 		layout:{
@@ -269,104 +266,68 @@
 
 			case 'T2, not otherwise specified (NOS)':
 				break;
-
 			case 'T2a':
 				sum = sum - 0.352;
-
 				break;
-
 			case 'T2b':
 				sum = sum + 0.330;
-
 				break;
-
 			case 'T3':
 				sum = sum - 0.094;
-
 				break;
-
 			case 'T4':
 				sum = sum - 0.082;
-
 				break;
-
 			default:
-
 				break;
-
 		}
-
 		switch(document.getElementById("location").value){
 
 			case 'Not specified':
-
 				break;
 			case 'Trigone/ureter/bladder neck':
 				sum  = sum + 0.183;
 				break;
-
 			case 'Lateral wall or dome':
 				sum = sum - 0.113;
 				break;
-
 			case 'Overlapping/multiple sites':
 				sum = sum + 0.185;
 				break;
-
 			default:
-
 				break;
 		}
-
 		switch(document.getElementById("invasion").value){
 			case 'Not specified':
-
 				break;
-
 			case 'No':
 				sum = sum - 0.788;
-
 				break;
-
 			case 'Yes':
 				sum = sum + 1.083;
-
 				break;
-
 			default:
 				break;
 		}
-
 		switch(document.getElementById("size").value){
 			case 'Not specified':
-
 				break;
-
 			case '<= 2 cm':
 				sum = sum- 0.198;
-
 				break;
-
 			case '> 2 cm and <= 4 cm':
 				sum = sum + 0.223;
-
 				break;
-
 			case '> 4 cm and <= 6 cm':
 				sum = sum + 0.362;
-
 				break;
-
 			case '> 6 cm':
 				sum = sum + 0.564;
-
 				break;
-
 			default:
 				break;
 		}
-			
-
+		// Error Handling for Textbox
 		if(document.fifth.five.value.length == 0){
 		    document.Result.result.value = 'Enter your age';
 		    return;
@@ -374,6 +335,7 @@
 		    document.Result.result.value = 'Not a valid age';
 		    return;
 		}
+
 		sum = sum - (0.008 * document.fifth.five.value);
 		switch(document.getElementById("sex").value){
 
