@@ -1,0 +1,410 @@
+<!doctype html>
+<html>
+
+
+	<!-- The header will handle all the styling.-->
+	<head>
+	    <meta charset="utf-8">
+	    <title> Stanford Bladder Calculator </title>
+	    <style>
+		.select-css {
+			display: block;
+			font-size: 16px;
+			font-family: sans-serif;
+			font-weight: 700;
+			color: #444;
+			line-height: 1.3;
+			padding: .6em 1.4em .5em .8em;
+			width: 100%;
+			max-width: 65%;
+			box-sizing: border-box;
+			margin: 0;
+			border: 1px solid #aaa;
+			box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+			border-radius: .5em;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			appearance: none;
+			background-color: #fff;
+			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+			  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+			background-repeat: no-repeat, repeat;
+			background-position: right .7em top 50%, 0 0;
+			background-size: .65em auto, 100%;
+		}
+		.select-css::-ms-expand {
+			display: none;
+		}
+		.select-css:hover {
+			border-color: #888;
+		}
+		.select-css:focus {
+			border-color: #aaa;
+			box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+			box-shadow: 0 0 0 3px -moz-mac-focusring;
+			color: #222; 
+			outline: none;
+		}
+		.select-css option {
+			font-weight:normal;
+		}
+		*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
+			background-position: left .7em top 50%, 0 0;
+			padding: .6em .8em .5em 1.4em;
+		}
+		.select-css:disabled, .select-css[aria-disabled=true] {
+			color: graytext;
+			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+			  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+		}
+		.select-css:disabled:hover, .select-css[aria-disabled=true] {
+			border-color: #aaa;
+
+		}
+		*[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
+			background-position: left .7em top 50%, 0 0;
+			padding: .6em .8em .5em 1.4em;
+		}
+		.select-css:disabled, .select-css[aria-disabled=true] {
+			color: graytext;
+			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+			  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+		}
+		.select-css:disabled:hover, .select-css[aria-disabled=true] {
+			border-color: #aaa;
+		}
+		.textview {
+			display: block;
+			font-size: 16px;
+			font-family: sans-serif;
+			font-weight: 700;
+			color: #444;
+			line-height: 1.3;
+			padding: .6em 1.4em .5em .8em;
+			width: 100%;
+			max-width: 65%; /* useful when width is set to anything other than 100% */
+			box-sizing: border-box;
+			margin: 0;
+			border: 1px solid #aaa;
+			box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+			border-radius: .5em;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			appearance: none;
+			background-color: #fff;
+		}
+		.table {
+		    display: table;
+		    width: 100%;
+		    table-layout: fixed;
+		}
+		.cell {
+		    display: table-cell;
+		    vertical-align: middle;
+		}
+	</style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+
+	<body>
+
+		<!-- Stanford Logo-->
+		<img src="image.png">
+
+		<div class="container-fluid">	
+			<div class="table">
+			    <div class="cell">
+				<p>1. Preoperative tumor (T) stage</p>
+				<form>
+				    <select class="select-css" id="stage">
+					<option value="T2, not otherwise specified (NOS)"> T2, not otherwise specified (NOS)</option>
+					<option value="T2a"> T2a</option>
+					<option value="T2b"> T2b</option>
+					<option value="T3"> T3</option>
+					<option value="T4"> T4</option>
+				    </select>
+				</form>
+				<br>
+				<p>  2. Location of tumor in bladder </p>
+				<form>
+				    <select class="select-css" id="location">
+					<option value="Not specified"> Not specified </option>
+					<option value="Trigone/ureter/bladder neck"> Trigone/ureter/bladder neck</option>
+					<option value="Lateral wall or dome"> Lateral wall or dome</option>
+					<option value="Overlapping/multiple sites"> Overlapping/multiple sites</option>
+				    </select>
+				</form>
+				<br>
+				<p>  3. Lymphovascular invasion (LVSI) </p>
+				<form>
+				    <select class="select-css" id="invasion">
+					<option value="Not specified"> Not specified</option>
+					<option value="No"> No</option>
+					<option value="Yes"> Yes</option>
+				    </select>
+				</form>
+				<br>
+				<p>  4. Tumor Size </p>
+				<form>
+				      <select class="select-css" id="size">
+					<option value="Not specified"> Not specified</option>
+					<option value="<= 2 cm"> <= 2 cm </option>
+					<option value="> 2 cm and <= 4 cm"> > 2 cm and <= 4 cm</option>
+					<option value="> 4 cm and <= 6 cm"> > 4 cm and <= 6 cm</option>
+					<option value="> 6 cm"> > 6 cm </option>
+				    </select>
+				</form>
+				<br>
+				<p>  5. Patient age (years)</p>
+				 <form name="fifth">
+					 <input class="textview" name="five">
+				</form>
+				<br>
+				<p>6. Sex </p>
+				<form>
+				    <select class="select-css" id="sex">
+					<option value="Male"> Male</option>
+					<option value="Female"> Female</option>
+				    </select>
+				<br>
+				</form>
+				<button type="button" class="btn btn-danger" onclick="computeResult()">Predicted risk of pN+</button>
+				<form name="Result">
+					<br>
+					<input class="textview" name="result">
+				</form>
+			</div>
+			<div id="pie">
+			<div class="cell">
+			         <canvas id="myChart" width="500" height="500"></canvas>
+			</div>
+			</div>
+		    </div>
+		</div>
+                <!--Chart.js script used -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+		<script src="./js/script.js"></script>
+	</body>
+        <script type="text/javascript">
+
+	    var myChart = document.getElementById('myChart').getContext('2d');
+	    Chart.defaults.global.defaultFontFamily = 'sans-serif';
+	    Chart.defaults.global.defaultFontSize = 18;
+	    Chart.defaults.global.maintainAspectRation = false;
+
+            // This is my Blank Chart which I will update 
+	    var myPieChart = new Chart(myChart, {
+	      type:'pie',
+	      data:{
+		labels:['', ''],
+		datasets:[{
+		  data:[
+		      0,
+		      0,
+		  ],
+		   backgroundColor:[
+		      
+		     'rgba(255, 255, 255, 1.0)',
+		     'rgba(255, 255, 255, 1.0)',
+		  ],
+		}]
+	      },
+	      options:{
+		responsive: true,
+		title:{
+		  fontColor: '#FFF',
+		  display:true,
+		  text:'Predicted risk of pN+ disease',
+		  fontSize:25
+		},
+		legend:{
+		  display:true,
+		  position:'bottom',
+		  labels:{
+		    fontColor:'#000'
+		  }
+		},
+		plugins:{
+		    datalabels: {
+			color: '#FFF',
+			anchor: 'end',
+			align: 'start',
+			offset: -10,
+			borderWidth: 2,
+			borderColor: '#fff',
+			borderRadius: 25,
+			backgroundColor: (context) => {
+				return context.dataset.backgroundColor;
+			},
+			font: {
+				weight: 'bold',
+				size: '18'
+			},
+			formatter: (value) => {
+				return value + '%';
+			}
+
+		    }
+		},
+		layout:{
+		  padding:{
+		    left:20,
+		    right:0,
+		    bottom:0,
+		    top: 0
+		  }
+		},
+		tooltips:{
+		  enabled:false
+		}
+	      }
+	    });
+
+            // This function handles computing the percentage and updating the Chart
+            // It uses switch statements to get the user input
+	    function computeResult(){
+		var sum = -1.101;                
+		switch(document.getElementById("stage").value){
+
+			case 'T2, not otherwise specified (NOS)':
+				break;
+
+			case 'T2a':
+				sum = sum - 0.352;
+
+				break;
+
+			case 'T2b':
+				sum = sum + 0.330;
+
+				break;
+
+			case 'T3':
+				sum = sum - 0.094;
+
+				break;
+
+			case 'T4':
+				sum = sum - 0.082;
+
+				break;
+
+			default:
+
+				break;
+
+		}
+
+		switch(document.getElementById("location").value){
+
+			case 'Not specified':
+
+				break;
+			case 'Trigone/ureter/bladder neck':
+				sum  = sum + 0.183;
+				break;
+
+			case 'Lateral wall or dome':
+				sum = sum - 0.113;
+				break;
+
+			case 'Overlapping/multiple sites':
+				sum = sum + 0.185;
+				break;
+
+			default:
+
+				break;
+		}
+
+		switch(document.getElementById("invasion").value){
+			case 'Not specified':
+
+				break;
+
+			case 'No':
+				sum = sum - 0.788;
+
+				break;
+
+			case 'Yes':
+				sum = sum + 1.083;
+
+				break;
+
+			default:
+				break;
+		}
+
+		switch(document.getElementById("size").value){
+			case 'Not specified':
+
+				break;
+
+			case '<= 2 cm':
+				sum = sum- 0.198;
+
+				break;
+
+			case '> 2 cm and <= 4 cm':
+				sum = sum + 0.223;
+
+				break;
+
+			case '> 4 cm and <= 6 cm':
+				sum = sum + 0.362;
+
+				break;
+
+			case '> 6 cm':
+				sum = sum + 0.564;
+
+				break;
+
+			default:
+				break;
+		}
+			
+
+		if(document.fifth.five.value.length == 0){
+		    document.Result.result.value = 'Enter your age';
+		    return;
+		} else if((isNaN(document.fifth.five.value)) || (document.fifth.five.value < 1) || (document.fifth.five.value > 120)){
+		    document.Result.result.value = 'Not a valid age';
+		    return;
+		}
+		sum = sum - (0.008 * document.fifth.five.value);
+		switch(document.getElementById("sex").value){
+
+		case 'Male':
+			break;
+
+		case 'Female':
+			sum = sum + 0.142;
+			break;
+                default:
+                    break;
+            }
+	    sum = sum + (13*0.014);
+	    sum = Math.pow(Math.E, sum);
+
+	    // Result of Calculation
+	    let sol = Math.round(100*(sum/(1 + sum)));
+
+	    // Final Percentage Written to textbox
+	    document.Result.result.value = sol + " % ";
+
+	    // Update Chart
+	    myPieChart.data.datasets[0].data[0] = sol;
+	    myPieChart.data.datasets[0].data[1] = 100 - sol;
+	    myPieChart.data.datasets[0].backgroundColor[0] = 'rgba(255, 0, 0, 1.0)';
+	    myPieChart.data.datasets[0].backgroundColor[1] = 'rgba(51, 155, 255, 1.0)';
+	    myPieChart.data.labels[0] = 'predicted probability of involved nodes'; 
+	    myPieChart.data.labels[1] = 'predicted probability of negative nodes'; 
+	    myPieChart.options.plugins.datalabels.color = '#000';
+	    myPieChart.options.title.fontColor = '#000';
+	    myPieChart.update();
+        }
+    </script>
+</html>
