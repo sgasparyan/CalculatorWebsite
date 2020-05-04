@@ -253,102 +253,98 @@
 		}
 	      }
 	    });
-
             // This function handles computing the percentage and updating the Chart
             // It uses switch statements to get the user input
-	    function computeResult(){
-		let sum = -1.101;                
-		switch(document.getElementById("stage").value){
-			case 'T2, not otherwise specified (NOS)':
+        function computeResult(){
+	    let sum = -1.101;                
+	    switch(document.getElementById("stage").value){
+		case 'T2, not otherwise specified (NOS)':
 				break;
-			case 'T2a':
+		case 'T2a':
 				sum = sum - 0.352;
 				break;
-			case 'T2b':
+		case 'T2b':
 				sum = sum + 0.330;
 				break;
-			case 'T3':
+		case 'T3':
 				sum = sum - 0.094;
 				break;
-			case 'T4':
+		case 'T4':
 				sum = sum - 0.082;
 				break;
-			default:
-				break;
-		}
-		switch(document.getElementById("location").value){
-			case 'Not specified':
-				break;
-			case 'Trigone/ureter/bladder neck':
-				sum  = sum + 0.183;
-				break;
-			case 'Lateral wall or dome':
-				sum = sum - 0.113;
-				break;
-			case 'Overlapping/multiple sites':
-				sum = sum + 0.185;
-				break;
-			default:
-				break;
-		}
-		switch(document.getElementById("invasion").value){
-			case 'Not specified':
-				break;
-			case 'No':
-				sum = sum - 0.788;
-				break;
-			case 'Yes':
-				sum = sum + 1.083;
-				break;
-			default:
-				break;
-		}
-		switch(document.getElementById("size").value){
-			case 'Not specified':
-				break;
-			case '<= 2 cm':
-				sum = sum- 0.198;
-				break;
-			case '> 2 cm and <= 4 cm':
-				sum = sum + 0.223;
-				break;
-			case '> 4 cm and <= 6 cm':
-				sum = sum + 0.362;
-				break;
-			case '> 6 cm':
-				sum = sum + 0.564;
-				break;
-			default:
-				break;
-		}
-		// Error Handling for Textbox
-		if(document.fifth.five.value.length == 0){
-		    document.Result.result.value = 'Enter your age';
-		    return;
-		} else if((isNaN(document.fifth.five.value)) || (document.fifth.five.value < 1) || (document.fifth.five.value > 120)){
-		    document.Result.result.value = 'Not a valid age';
-		    return;
-		}
-		sum = sum - (0.008 * document.fifth.five.value);
+		default:
+		    break;
+	    }
+	    switch(document.getElementById("location").value){
+		case 'Not specified':
+		    break;
+		case 'Trigone/ureter/bladder neck':
+		    sum  = sum + 0.183;
+		    break;
+		case 'Lateral wall or dome':
+		    sum = sum - 0.113;
+		    break;
+		case 'Overlapping/multiple sites':
+		    sum = sum + 0.185;
+		    break;
+		default:
+		    break;
+	    }
+	    switch(document.getElementById("invasion").value){
+	        case 'Not specified':
+		    break;
+	        case 'No':
+		    sum = sum - 0.788;
+		    break;
+	        case 'Yes':
+	   	    sum = sum + 1.083;
+	            break;
+	        default:
+		    break;
+	    }
+	    switch(document.getElementById("size").value){
+		case 'Not specified':
+		    break;
+		case '<= 2 cm':
+		    sum = sum- 0.198;
+   		    break;
+		case '> 2 cm and <= 4 cm':
+		    sum = sum + 0.223;
+		    break;
+		case '> 4 cm and <= 6 cm':
+		    sum = sum + 0.362;
+		    break;
+		case '> 6 cm':
+		    sum = sum + 0.564;
+	            break;
+		default:
+	            break;
+	    }
+            // Error Handling for Textbox
+            if(document.fifth.five.value.length == 0){
+                document.Result.result.value = 'Enter your age';
+                return;
+            } else if((isNaN(document.fifth.five.value)) || (document.fifth.five.value < 1) || (document.fifth.five.value > 120)){
+                document.Result.result.value = 'Not a valid age';
+                return;
+            }
+	    sum = sum - (0.008 * document.fifth.five.value);
 
-		switch(document.getElementById("sex").value){
+	    switch(document.getElementById("sex").value){
 		case 'Male':
-			break;
+		    break;
 		case 'Female':
-			sum = sum + 0.142;
-			break;
+		    sum = sum + 0.142;
+		    break;
                 default:
                     break;
             }
 	    sum = sum + (13*0.014);
 	    sum = Math.pow(Math.E, sum);
-
 	    // Result of Calculation
 	    let sol = Math.round(100*(sum/(1 + sum)));
-
 	    // Final Percentage Written to textbox
 	    document.Result.result.value = sol + " % ";
-
 	    // Update Chart
 	    myPieChart.data.datasets[0].data[0] = sol;
 	    myPieChart.data.datasets[0].data[1] = 100 - sol;
