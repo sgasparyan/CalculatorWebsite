@@ -259,7 +259,6 @@
 	    function computeResult(){
 		let sum = -1.101;                
 		switch(document.getElementById("stage").value){
-
 			case 'T2, not otherwise specified (NOS)':
 				break;
 			case 'T2a':
@@ -278,7 +277,6 @@
 				break;
 		}
 		switch(document.getElementById("location").value){
-
 			case 'Not specified':
 				break;
 			case 'Trigone/ureter/bladder neck':
@@ -331,13 +329,11 @@
 		    document.Result.result.value = 'Not a valid age';
 		    return;
 		}
-
 		sum = sum - (0.008 * document.fifth.five.value);
-		switch(document.getElementById("sex").value){
 
+		switch(document.getElementById("sex").value){
 		case 'Male':
 			break;
-
 		case 'Female':
 			sum = sum + 0.142;
 			break;
