@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<!-- The header will handle all the styling.-->
+	<head>
+	    <meta charset="utf-8">
+	    <title> Stanford Bladder Calculator </title>
+	    
+        <link rel="stylesheet" href="StanfordWeb.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<!-- Stanford Logo-->
+		<img src="image.png">
+		<div class="container-fluid">	
+			<div class="table">
+			    <div class="cell">
+				<p>1. Preoperative tumor (T) stage</p>
+				<form>
+				    <select class="select-css" id="stage">
+					<option value="T2, not otherwise specified (NOS)"> T2, not otherwise specified (NOS)</option>
+					<option value="T2a"> T2a</option>
+					<option value="T2b"> T2b</option>
+					<option value="T3"> T3</option>
+					<option value="T4"> T4</option>
+				    </select>
+				</form>
+				<br>
+				<p>  2. Location of tumor in bladder </p>
+				<form>
+				    <select class="select-css" id="location">
+					<option value="Not specified"> Not specified </option>
+					<option value="Trigone/ureter/bladder neck"> Trigone/ureter/bladder neck</option>
+					<option value="Lateral wall or dome"> Lateral wall or dome</option>
+					<option value="Overlapping/multiple sites"> Overlapping/multiple sites</option>
+				    </select>
+				</form>
+				<br>
+				<p>  3. Lymphovascular invasion (LVSI) </p>
+				<form>
+				    <select class="select-css" id="invasion">
+					<option value="Not specified"> Not specified</option>
+					<option value="No"> No</option>
+					<option value="Yes"> Yes</option>
+				    </select>
+				</form>
+				<br>
+				<p>  4. Tumor Size </p>
+				<form>
+				      <select class="select-css" id="size">
+					<option value="Not specified"> Not specified</option>
+					<option value="<= 2 cm"> <= 2 cm </option>
+					<option value="> 2 cm and <= 4 cm"> > 2 cm and <= 4 cm</option>
+					<option value="> 4 cm and <= 6 cm"> > 4 cm and <= 6 cm</option>
+					<option value="> 6 cm"> > 6 cm </option>
+				    </select>
+				</form>
+				<br>
+				<p>  5. Patient age (years)</p>
+				 <form name="fifth">
+					 <input class="textview" name="five">
+				</form>
+				<br>
+				<p>6. Sex </p>
+				<form>
+				    <select class="select-css" id="sex">
+					<option value="Male"> Male</option>
+					<option value="Female"> Female</option>
+				    </select>
+				<br>
+				</form>
+				<button type="button" class="btn btn-danger" onclick="computeResult()">Predicted risk of pN+</button>
+				<form name="Result">
+					<br>
+					<input class="textview" name="result">
+				</form>
+			</div>
+			<div class="cell">
+				<div id="pie">
+					<div class="cell">
+						 <canvas id="myChart" width="500" height="500"></canvas>
+					</div>
+				</div>
+			</div>
+		    </div>
+		</div>
+                <!--Chart.js script used -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+		<script src="./js/script.js"></script>
+		<script src="StanfordWeb.js"></script>
+	</body>
+</html>
