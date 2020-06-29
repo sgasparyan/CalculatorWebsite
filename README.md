@@ -1,1 +1,2 @@
-This is the README for this Directory.
+To run the website in a browser do
+    firefox StanfordWeb.html
