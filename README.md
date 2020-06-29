@@ -1,2 +1,1 @@
-To run the website in a browser do
-    firefox StanfordWeb.html
+To run the website in a browser type 'firefox StanfordWeb.html'
